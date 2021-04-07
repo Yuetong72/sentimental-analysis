@@ -7,6 +7,7 @@ import tweepy
 from tweepy import OAuthHandler 
 from tweepy import Stream
 import json
+from os import environ
 
 class scraping:
     def __init__(self):
@@ -19,10 +20,14 @@ class scraping:
         self.newsapi = NewsApiClient(api_key='783c2e695dd249459721cbad4a6fd589')
 
         # initialize Twitter
-        self.consumer_key = 'Bikr0kqkiYTEOLlTWhP2RNeae'
-        self.consumer_secret = 't1wigeMGDBl6hFSkQEeNwE0urn3ZxMk0M4GqnAWXbOvyriouw8'
-        self.access_token = '986411194234888193-M23IJfTQgr81GrkwTIbOFR474A0pRby'
-        self.access_token_secret = 'sUq52for7eU4qegLhBqoPXaTF7DwGkwKhtJnUoSiUePMx'
+        self.consumer_key = environ[consumer_key]
+        # 'Bikr0kqkiYTEOLlTWhP2RNeae'
+        self.consumer_secret = environ[consumer_secret]
+        # 't1wigeMGDBl6hFSkQEeNwE0urn3ZxMk0M4GqnAWXbOvyriouw8'
+        self.access_token = environ[access_token]
+        # '986411194234888193-M23IJfTQgr81GrkwTIbOFR474A0pRby'
+        self.access_token_secret = environ[access_token_secret]
+        # 'sUq52for7eU4qegLhBqoPXaTF7DwGkwKhtJnUoSiUePMx'
         self.auth = OAuthHandler(self.consumer_key, self.consumer_secret) 
         self.auth.set_access_token(self.access_token, self.access_token_secret) 
         self.api = tweepy.API(self.auth, wait_on_rate_limit=True) 
